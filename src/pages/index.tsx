@@ -1,5 +1,11 @@
+import Header from "@/components/Header/Header";
+
 const HomePage = () => {
-  return <div className="text-3xl text-sky-500">Universe!</div>;
+  return (
+    <>
+      <Header label="Home" />
+    </>
+  );
 };
 
 export default HomePage;
