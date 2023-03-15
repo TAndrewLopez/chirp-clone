@@ -1,5 +1,6 @@
 import { loginModalState } from "@/hooks/useLoginModal";
 import { registerModalState } from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
 import Input from "../Input";
@@ -16,7 +17,11 @@ const LoginModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      // TODO: ADD LOG IN
+
+      await signIn("credentials", {
+        email,
+        password,
+      });
 
       setLoginState((prev) => ({
         ...prev,
@@ -27,8 +32,7 @@ const LoginModal = () => {
     } finally {
       setIsLoading(false);
     }
-    // FIXME: THE DEPENDENCY ARRAY IS POTENTIALLY DIFFERENT
-  }, [loginModalState]);
+  }, [loginModalState, email, password]);
 
   const onToggle = useCallback(() => {
     if (isLoading) return;
@@ -41,7 +45,7 @@ const LoginModal = () => {
       ...prev,
       isOpen: true,
     }));
-  }, [isLoading, registerModalState, loginModalState]);
+  }, [isLoading, registerModalState, loginModalState, email, password]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -53,8 +57,9 @@ const LoginModal = () => {
       />
       <Input
         placeholder="Password"
-        onChange={(evt) => setEmail(evt.target.value)}
+        onChange={(evt) => setPassword(evt.target.value)}
         value={password}
+        type="password"
         disabled={isLoading}
       />
     </div>

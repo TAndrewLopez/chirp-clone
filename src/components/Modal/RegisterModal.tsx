@@ -1,12 +1,12 @@
 import { loginModalState } from "@/hooks/useLoginModal";
 import { registerModalState } from "@/hooks/useRegisterModal";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { useRecoilState } from "recoil";
 import Input from "../Input";
 import Modal from "./Modal";
-import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
   const [loginState, setLoginState] = useRecoilState(loginModalState);
@@ -46,7 +46,6 @@ const RegisterModal = () => {
     } finally {
       setIsLoading(false);
     }
-    // FIXME: THE DEPENDENCY ARRAY IS POTENTIALLY DIFFERENT
   }, [registerModalState, email, name, username, password]);
 
   const onToggle = useCallback(() => {
