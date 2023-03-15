@@ -1,6 +1,6 @@
-import { BsHouseFill, BsBellFill } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
+import { BsBellFill, BsHouseFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
 import SidebarTweetButton from "./SidebarTweetButton";
@@ -9,7 +9,7 @@ const Sidebar = () => {
   const items = [
     { label: "Home", href: "/", icon: BsHouseFill },
     { label: "Notifications", href: "/notifications", icon: BsBellFill },
-    { label: "Profile", href: "/", icon: FaUser },
+    { label: "Profile", href: "/profile", icon: FaUser },
   ];
 
   return (
