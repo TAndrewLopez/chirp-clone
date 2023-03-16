@@ -1,4 +1,5 @@
 import Header from "@/components/Header/Header";
+import PostFeed from "@/components/Posts/PostFeed";
 import UserBio from "@/components/Users/UserBio";
 import UserHero from "@/components/Users/UserHero";
 import useUser from "@/hooks/useUser";
@@ -13,7 +14,7 @@ const UserView = () => {
 
   if (isLoading || !fetchedUser) {
     return (
-      <div className="flex justify-center items-center h-full">
+      <div className="flex items-center justify-center h-full">
         <ClipLoader color="lightblue" size={80} />
       </div>
     );
@@ -24,6 +25,7 @@ const UserView = () => {
       <Header label={fetchedUser?.name} showBackArrow />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
+      <PostFeed userId={userId as string} />
     </>
   );
 };

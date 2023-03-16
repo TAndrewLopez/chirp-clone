@@ -1,4 +1,5 @@
 import { editModalState } from "@/hooks/useEditModal";
+import useFollow from "@/hooks/useFollow";
 import useCurrentUser from "@/hooks/userCurrentUser";
 import useUser from "@/hooks/useUser";
 import { format } from "date-fns";
@@ -15,6 +16,8 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useUser(userId);
   const setEditState = useSetRecoilState(editModalState);
+
+  const { isFollowing, toggleFollow } = useFollow(userId);
 
   const createdAt = useMemo(() => {
     if (!fetchedUser?.createdAt) return null;
@@ -36,12 +39,17 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
             }
           />
         ) : (
-          <Button onClick={() => {}} label="Follow" secondary />
+          <Button
+            onClick={toggleFollow}
+            label={isFollowing ? "Unfollow" : "Follow"}
+            secondary={!isFollowing}
+            outline={isFollowing}
+          />
         )}
       </div>
-      <div className="mt-8 px-4">
+      <div className="px-4 mt-8">
         <div className="flex flex-col">
-          <p className="text-white text-2xl font-semibold">
+          <p className="text-2xl font-semibold text-white">
             {fetchedUser?.name}
           </p>
           <p className="text-md text-neutral-500">@{fetchedUser?.username}</p>
@@ -53,7 +61,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
             <p>Joined {createdAt}</p>
           </div>
         </div>
-        <div className="flex items-center mt-4 gap-6">
+        <div className="flex items-center gap-6 mt-4">
           <div className="flex items-center gap-1">
             <p className="text-white">{fetchedUser?.followingIds?.length}</p>
             <p className="text-neutral-500">Following</p>
