@@ -5,7 +5,7 @@ import { registerModalState } from "@/hooks/useRegisterModal";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import Avatar from "./Avatar";
 import Button from "./Button";
 
@@ -16,8 +16,8 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
-  const [registerState, setRegisterState] = useRecoilState(registerModalState);
-  const [loginState, setLoginState] = useRecoilState(loginModalState);
+  const setRegisterState = useSetRecoilState(registerModalState);
+  const setLoginState = useSetRecoilState(loginModalState);
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
   const [body, setBody] = useState("");
