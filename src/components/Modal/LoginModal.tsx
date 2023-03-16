@@ -2,13 +2,13 @@ import { loginModalState } from "@/hooks/useLoginModal";
 import { registerModalState } from "@/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Input from "../Input";
 import Modal from "./Modal";
 
 const LoginModal = () => {
   const [loginState, setLoginState] = useRecoilState(loginModalState);
-  const [registerState, setRegisterState] = useRecoilState(registerModalState);
+  const setRegisterState = useSetRecoilState(registerModalState);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

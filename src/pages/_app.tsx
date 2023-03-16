@@ -7,6 +7,7 @@ import { RecoilRoot } from "recoil";
 
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
+import EditModal from "@/components/Modal/EditModal";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <RecoilRoot>
           <Toaster />
           <RegisterModal />
+          <EditModal />
           <LoginModal />
           <Layout>
             <Component {...pageProps} />

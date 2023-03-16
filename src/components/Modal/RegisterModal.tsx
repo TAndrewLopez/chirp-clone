@@ -4,12 +4,12 @@ import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Input from "../Input";
 import Modal from "./Modal";
 
 const RegisterModal = () => {
-  const [loginState, setLoginState] = useRecoilState(loginModalState);
+  const setLoginState = useSetRecoilState(loginModalState);
   const [registerState, setRegisterState] = useRecoilState(registerModalState);
 
   const [name, setName] = useState("");
