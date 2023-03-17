@@ -75,13 +75,13 @@ const PostItem: React.FC<PostItemProps> = ({ userId, data }) => {
           <div className="flex items-center gap-10 mt-3">
             <div className="flex items-center gap-2 transition cursor-pointer text-neutral-500 hover:text-sky-500">
               <AiOutlineMessage size={20} />
-              <p>{data.comments?.length || 0}</p>
+              <p>{data.comments.length}</p>
             </div>
             <div
               onClick={onLike}
               className="flex items-center gap-2 transition cursor-pointer text-neutral-500 hover:text-red-500">
-              <LikeIcon size={20} />
-              <p>{data.likedIds?.length || 0}</p>
+              <LikeIcon size={20} color={hasLiked ? "red" : ""} />
+              <p>{data.likedIds.length}</p>
             </div>
           </div>
         </div>

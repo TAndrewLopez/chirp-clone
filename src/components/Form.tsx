@@ -1,4 +1,5 @@
 import { loginModalState } from "@/hooks/useLoginModal";
+import usePost from "@/hooks/usePost";
 import usePosts from "@/hooks/usePosts";
 import useCurrentUser from "@/hooks/userCurrentUser";
 import { registerModalState } from "@/hooks/useRegisterModal";
@@ -20,22 +21,25 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
   const setLoginState = useSetRecoilState(loginModalState);
   const { data: currentUser } = useCurrentUser();
   const { mutate: mutatePosts } = usePosts();
+  const { mutate: mutatePost } = usePost(postId as string);
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      await axios.post("/api/posts", { body });
+      const url = isComment ? `/api/comments?postId=${postId}` : "/api/posts";
+      await axios.post(url, { body });
       toast.success("Tweet Created!");
       setBody("");
       mutatePosts();
+      mutatePost();
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
       setIsLoading(false);
     }
-  }, [body, mutatePosts]);
+  }, [body, mutatePosts, isComment, postId, mutatePost]);
 
   return (
     <div className="border-b-[1px] border-neutral-800 px-5 py-2">
