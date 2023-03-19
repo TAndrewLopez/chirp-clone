@@ -14,7 +14,7 @@ const SidebarTweetButton = () => {
       ...prev,
       isOpen: true,
     }));
-  }, [loginModalState]);
+  }, [setLoginState]);
 
   return (
     <div onClick={onClick}>

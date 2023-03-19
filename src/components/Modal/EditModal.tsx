@@ -65,7 +65,7 @@ const EditModal = () => {
     name,
     username,
     bio,
-    editModalState,
+    setEditState,
     mutateFetchedUser,
   ]);
 

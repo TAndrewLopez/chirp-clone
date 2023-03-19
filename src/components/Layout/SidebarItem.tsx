@@ -36,7 +36,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         isOpen: true,
       }));
     } else if (href) router.push(href);
-  }, [router, onClick, href, currentUser, auth, loginModalState]);
+  }, [router, onClick, href, currentUser, auth, setLoginState]);
 
   return (
     <div onClick={handleClick} className="flex items-center">

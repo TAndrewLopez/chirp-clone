@@ -32,7 +32,7 @@ const LoginModal = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [loginModalState, email, password]);
+  }, [setLoginState, email, password]);
 
   const onToggle = useCallback(() => {
     if (isLoading) return;
@@ -45,7 +45,7 @@ const LoginModal = () => {
       ...prev,
       isOpen: true,
     }));
-  }, [isLoading, registerModalState, loginModalState, email, password]);
+  }, [isLoading, setLoginState, setRegisterState, email, password]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">

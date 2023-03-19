@@ -46,7 +46,7 @@ const RegisterModal = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [registerModalState, email, name, username, password]);
+  }, [setRegisterState, email, name, username, password]);
 
   const onToggle = useCallback(() => {
     if (isLoading) return;
@@ -60,7 +60,7 @@ const RegisterModal = () => {
       ...prev,
       isOpen: true,
     }));
-  }, [isLoading, registerModalState, loginModalState]);
+  }, [isLoading, setRegisterState, setLoginState]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">

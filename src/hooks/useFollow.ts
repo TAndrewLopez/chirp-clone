@@ -48,7 +48,7 @@ const useFollow = (userId: string) => {
     userId,
     mutateCurrentUser,
     mutateFetchedUser,
-    loginModalState,
+    setLoginState,
   ]);
 
   return {

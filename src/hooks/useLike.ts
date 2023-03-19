@@ -43,7 +43,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
     postId,
     mutateFetchedPost,
     mutateFetchedPosts,
-    loginModalState,
+    setLoginState,
   ]);
 
   return {
